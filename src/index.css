@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.boards {
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.board {
+    border: 5px solid #ccc;
+    float: left;
+    font: 700 24px HelveticaNeue, Helvetica, Arial;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.board.selected {
+    border-color: #3BA8AA;
+}

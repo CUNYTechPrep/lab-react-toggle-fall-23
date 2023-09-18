@@ -9,17 +9,22 @@ function Board(props) {
   return <div className={className}>{props.index + 1}</div>;
 }
 
-function BoardSwitcher(props) {
+function BoardSwitcher({ numBoards }) {
+  const [toggleIndex, setToggleIndex] = React.useState(0);
+
+  const handleClick = (event) => {
+    setToggleIndex((toggleIndex + 1) % numBoards);
+  };
   let boards = [];
-  for (let ii = 0; ii < props.numBoards; ii++) {
-    let isSelected = ii === 0;
+  for (let ii = 0; ii < numBoards; ii++) {
+    let isSelected = ii === toggleIndex;
     boards.push(<Board index={ii} selected={isSelected} key={ii} />);
   }
 
   return (
     <div>
       <div className="boards">{boards}</div>
-      <button>Toggle</button>
+      <button onClick={handleClick}>Toggle</button>
     </div>
   );
 }

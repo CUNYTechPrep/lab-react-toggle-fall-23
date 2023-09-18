@@ -11,15 +11,20 @@ function Board(props) {
 
 function BoardSwitcher(props) {
   let boards = [];
+  const [isSelected, setIsSelected] = React.useState(0);
+  function add() {
+    if(isSelected === props.numBoards - 1) setIsSelected(0);
+    else setIsSelected(isSelected + 1)
+  }
   for (let ii = 0; ii < props.numBoards; ii++) {
-    let isSelected = ii === 0;
-    boards.push(<Board index={ii} selected={isSelected} key={ii} />);
+    let select = ii === isSelected;
+    boards.push(<Board index={ii} selected={select} key={ii} />);
   }
 
   return (
     <div>
       <div className="boards">{boards}</div>
-      <button>Toggle</button>
+      <button onClick={add}>Toggle</button>
     </div>
   );
 }

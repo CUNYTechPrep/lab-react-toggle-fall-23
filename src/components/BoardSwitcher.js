@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 function Board(props) {
   let className = "board";
@@ -10,16 +11,20 @@ function Board(props) {
 }
 
 function BoardSwitcher(props) {
+  const [selection, setSelection] = useState(1); // Initialize selection state with the first board number
+
+  // NOTE TO SELF: Local variables are made from scratch when the component renders
   let boards = [];
   for (let ii = 0; ii < props.numBoards; ii++) {
-    let isSelected = ii === 0;
+    let isSelected = ii === selection - 1;
     boards.push(<Board index={ii} selected={isSelected} key={ii} />);
   }
 
+  // Event handler for button is called with onClick attribute (below) to update the state
   return (
     <div>
       <div className="boards">{boards}</div>
-      <button>Toggle</button>
+      <button onClick={() => setSelection((selection + 1 > boards.length) ? 1 : selection + 1)}>Toggle</button> 
     </div>
   );
 }

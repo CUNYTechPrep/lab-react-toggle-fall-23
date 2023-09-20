@@ -12,7 +12,7 @@ function Board(props) {
 function BoardSwitcher({ numBoards }) {
   const [toggleIndex, setToggleIndex] = React.useState(0);
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     setToggleIndex((toggleIndex + 1) % numBoards);
   };
   let boards = [];

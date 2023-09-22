@@ -1,27 +1,54 @@
-import React from "react";
+/* I apologize. This is my first time working with forks with github. I thought
+I was supossed to create a react project simillar to the demonstrated version.
+I did not understand I was supossed to build on the previous github repo, but now I 
+know and I wont make the mistake again. */
 
-function Board(props) {
-  let className = "board";
-  if (props.selected) {
-    className += " selected";
-  }
+import React, { useState, version } from 'react';
 
-  return <div className={className}>{props.index + 1}</div>;
-}
-
-function BoardSwitcher(props) {
-  let boards = [];
-  for (let ii = 0; ii < props.numBoards; ii++) {
-    let isSelected = ii === 0;
-    boards.push(<Board index={ii} selected={isSelected} key={ii} />);
-  }
+function Square({ number, isActive }) {
+  const squareStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '60px',
+    height: '80px',
+    margin: '20px',
+    fontSize: '30px',
+    border: isActive ? '7px solid blue' : '7px solid grey'
+  };
 
   return (
-    <div>
-      <div className="boards">{boards}</div>
-      <button>Toggle</button>
-    </div>
-  );
+    <div style={squareStyle}>{number}</div>
+  )
 }
 
-export default BoardSwitcher;
+function Button({ onClick }) {
+  return (
+    <button onClick={onClick}>Toggle</button>
+  )
+}
+
+export default function App() {
+  const [activeSquareIndex, setActiveSquareIndex] = useState(0);
+
+  const toggle = () => {
+    setActiveSquareIndex((activeSquareIndex + 1) % 5)
+  }
+
+  const display = {
+    display: 'flex',
+    flexDirection: 'row'
+  }
+  return (
+    <div>
+      <div style={display}>
+        <Square number={1} isActive={1 === activeSquareIndex}></Square>
+        <Square number={2} isActive={2 === activeSquareIndex}></Square>
+        <Square number={3} isActive={3 === activeSquareIndex}></Square>
+        <Square number={4} isActive={4 === activeSquareIndex}></Square>
+        <Square number={5} isActive={0 === activeSquareIndex}></Square>
+      </div>
+      <Button onClick={toggle}></Button>
+    </div>
+  )
+};

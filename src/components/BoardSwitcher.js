@@ -8,11 +8,13 @@ function Board(props) {
 
   return <div className={className}>{props.index + 1}</div>;
 }
+let state=0;
 
 function BoardSwitcher(props) {
   let boards = [];
   for (let ii = 0; ii < props.numBoards; ii++) {
-    let isSelected = ii === 0;
+    state=ii%5;
+    let isSelected = state === 0;
     boards.push(<Board index={ii} selected={isSelected} key={ii} />);
   }
 

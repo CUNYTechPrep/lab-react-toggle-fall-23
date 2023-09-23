@@ -6,6 +6,7 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BoardSwitcher numBoards={3} />
+    <h1>CTP In-Class Assignment</h1>
+    <BoardSwitcher numBoards={20} />
   </React.StrictMode>
 );

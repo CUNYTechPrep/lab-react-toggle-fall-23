@@ -15,7 +15,7 @@ function BoardSwitcher(props) {
   //Use useState() to keep track of change
   const [getState, setState] = useState(0)
 
-  //onClick handler, update state + 1 and pass props.numBoards
+  //onClick handler, update state + 1 and pass numBoards
   const handleClick = ()=> {
     setState((getState + 1) %numBoards);
   }

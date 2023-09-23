@@ -10,18 +10,25 @@ function Board(props) {
 }
 
 // using useState
-
 function BoardSwitcher(props) {
-  const[selectBoard, setSelectBoard] = useState(0);
+  const [selectBoard, setSelectBoard] = useState(0);
   let boards = [];
   for (let ii = 0; ii < props.numBoards; ii++) {
     let isSelected = ii === selectBoard;
     boards.push(<Board index={ii} selected={isSelected} key={ii} />);
   }
 
-const handleClick = () => {
-  setSelectBoard((selectBoard + 1) % props.numBoards);
-}
+  // iterate through each of the array
+  // function to make the button move
+  // initially I thought of only going (selectBoard + 1) but then it gets stuck so we need to reset
+  const handleClick = () => {
+    if (selectBoard + 1 < props.numBoards) {
+      setSelectBoard(selectBoard + 1);
+    } else {
+      // resets after the 4th index
+      setSelectBoard(0);
+    }
+  };
 
   return (
     <div>
